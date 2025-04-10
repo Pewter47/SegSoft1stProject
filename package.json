@@ -1,0 +1,26 @@
+{
+  "name": "segsoft1stproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pewter47/SegSoft1stProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pewter47/SegSoft1stProject/issues"
+  },
+  "homepage": "https://github.com/Pewter47/SegSoft1stProject#readme",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "oauth2-server": "^3.1.1",
+    "sqlite3": "^5.1.7"
+  }
+}
