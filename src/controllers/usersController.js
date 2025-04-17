@@ -3,12 +3,12 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 const register = async (req, res) => {
-  const { username, password, role } = req.body;
+  const { username, password } = req.body;
   try {
     const hashedPasswd = await bcrypt.hash(password, 10);
     const sql =
-      `INSERT INTO user (username, password, role) VALUES (?, ?, ?)`;
-    db.run(sql, [username, hashedPasswd, role], function (err) {
+      `INSERT INTO user (username, password) VALUES (?, ?)`;
+    db.run(sql, [username, hashedPasswd], function (err) {
       if (err) {
         console.error(err);
         return res.status(400).json({ error: err.message });
@@ -16,7 +16,6 @@ const register = async (req, res) => {
       return res.status(201).json({
         id: this.lastID,
         username,
-        role,
       });
     });
   } catch (error) {
@@ -45,7 +44,7 @@ const login = async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
     const token = jwt.sign(
-      { username: row.username, role: row.role },
+      { username: row.username },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );

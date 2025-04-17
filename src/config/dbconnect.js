@@ -21,8 +21,7 @@ const init = () => {
     CREATE TABLE IF NOT EXISTS user (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT NOT NULL UNIQUE,
-    password TEXT NOT NULL,
-    role TEXT NOT NULL CHECK (role IN ('admin', 'manager', 'user'))
+    password TEXT NOT NULL
     )
     `, (err) => {
     if (err) {
