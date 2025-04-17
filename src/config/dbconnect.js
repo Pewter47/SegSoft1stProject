@@ -30,5 +30,19 @@ const init = () => {
       console.log("User table is ready (if it did not already exist).");
     }
   });
+
+  db.run(`
+    CREATE TABLE IF NOT EXISTS client (
+    id TEXT PRIMARY KEY,
+    secret TEXT NOT NULL,
+    redirectUri TEXT NOT NULL
+    )
+    `, (err) => {
+    if (err) {
+      console.error("Error creating client table:", err.message);
+    } else {
+      console.log("Client table is ready (if it did not already exist).");
+    }
+  });
 };
 export { db, init };
