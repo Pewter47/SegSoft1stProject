@@ -1,14 +1,14 @@
 import { db } from "../config/dbconnect.js";
 
 const register = async (req, res) => {
-    const { clientID, clientSecret, redirectUri } = req.body;
-    if (!clientID || !clientSecret || !redirectUri) {
-        return res.status(400).json({ error: "Missing id, secret or redirectUri" });
+    const { clientID, clientSecret, name, redirectUri } = req.body;
+    if (!clientID || !clientSecret || !name || !redirectUri) {
+        return res.status(400).json({ error: "Missing id, secret, application name or redirectUri" });
     }
     try {
         const sql =
-            `INSERT INTO client (id, secret, redirectUri) VALUES (?, ?, ?)`;
-        db.run(sql, [clientID, clientSecret, redirectUri], function (err) {
+            `INSERT INTO client (id, secret, name, redirectUri) VALUES (?, ?, ?, ?)`;
+        db.run(sql, [clientID, clientSecret, name, redirectUri], function (err) {
             if (err) {
                 console.error(err);
                 return res.status(400).json({ error: err.message });
