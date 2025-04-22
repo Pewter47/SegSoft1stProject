@@ -38,9 +38,14 @@ const strategy = new OAuth2Strategy(
 passport.use('provider', strategy);
 
 // Routes
-app.get('/', (req, res) => res.send('<a href="/auth/provider">Login with OAuth2</a>'));
+app.get('/', (req, res) => res.redirect('/auth/provider'));
 
-app.get('/auth/provider', passport.authenticate('provider'));
+app.get('/auth/provider', (req, res, next) => {
+  passport.authenticate('provider', {
+    scope: 'email',
+    prompt: 'login',
+  })(req, res, next);
+});
 
 app.get(
   '/auth/provider/callback',

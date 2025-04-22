@@ -5,18 +5,18 @@ import jwt from "jsonwebtoken";
 const authCodes = {};
 
 const show_form = async (req, res) => {
-    const { clientID, redirectUri, state } = req.query;
-    if (!clientID || !redirectUri) {
-        return res.status(400).json({ error: "Missing clientId or redirectUri" });
+    const { client_id, redirect_uri, state } = req.query;
+    if (!client_id || !redirect_uri) {
+        return res.status(400).json({ error: "Missing clientId or redirect_uri" });
     }
     try {
         const sql = "SELECT * FROM client WHERE id = ?";
-        db.get(sql, [clientID], (err, row) => {
+        db.get(sql, [client_id], (err, row) => {
             if (err) {
                 console.error(err);
                 return res.status(500).json({ error: "Database error" });
             }
-            if (!row || row.redirectUri !== redirectUri) {
+            if (!row || row.redirectUri !== redirect_uri) {
                 return res.status(404).json({ error: "Client not found" });
             }
 
@@ -24,8 +24,8 @@ const show_form = async (req, res) => {
                 <form method="POST" action="/authorize/login">
                   <label>Username: <input name="username" /></label><br/>
                   <label>Password: <input name="password" type="password" /></label><br/>
-                  <input type="hidden" name="client_id" value="${clientID}" />
-                  <input type="hidden" name="redirect_uri" value="${redirectUri}" />
+                  <input type="hidden" name="client_id" value="${client_id}" />
+                  <input type="hidden" name="redirect_uri" value="${redirect_uri}" />
                   <input type="hidden" name="state" value="${state}" />
                   <button type="submit">Login</button>
                 </form>
@@ -40,7 +40,7 @@ const show_form = async (req, res) => {
 const login = async (req, res) => {
     const { username, password, client_id, redirect_uri, state } = req.body;
     if (!username || !password || !client_id || !redirect_uri) {
-        return res.status(400).json({ error: "Missing username, password, clientId or redirectUri" });
+        return res.status(400).json({ error: "Missing username, password, clientId or redirect_uri" });
     }
 
     const sql = "SELECT * FROM user WHERE username = ?";
