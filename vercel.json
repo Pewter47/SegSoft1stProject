@@ -1,0 +1,14 @@
+{
+    "functions": {
+      "src/server.js": {
+        "runtime": "nodejs16.x"
+      }
+    },
+    "routes": [
+      {
+        "src": "/(.*)",
+        "dest": "src/server.js"
+      }
+    ]
+  }
+  
