@@ -16,6 +16,4 @@ app.use("/api/clients", clientRoutes);
 app.use("/api/users", userRoutes);
 const PORT = process.env.PORT || 3001;
 // Server initialisation
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-})
+export default app;
