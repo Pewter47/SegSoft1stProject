@@ -5,22 +5,18 @@ const OAuth2Strategy = require('passport-oauth2');
 
 const app = express();
 
-// Setup session middleware
 app.use(session({ secret: 'keyboard cat', resave: false, saveUninitialized: true }));
 
-// Initialize Passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Serialize/deserialize user
 passport.serializeUser((user, done) => done(null, user));
 passport.deserializeUser((obj, done) => done(null, obj));
 
-// Your strategy
 const strategy = new OAuth2Strategy(
   {
-    authorizationURL: 'http://localhost:3000/authorize',
-    tokenURL: 'http://localhost:3000/token',
+    authorizationURL: 'https://auth-server-ss2425.onrender.com/authorize',
+    tokenURL: 'https://auth-server-ss2425.onrender.com/token',
     clientID: 'my-client2',
     clientSecret: 'secret2',
     callbackURL: 'http://localhost:3001/auth/provider/callback',

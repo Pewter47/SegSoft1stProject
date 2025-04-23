@@ -82,23 +82,23 @@ const get_token = async (req, res) => {
         }
 
         const authCode = authCodes[code];
-    if (!authCode || authCode.client_id !== client_id) {
-        return res.status(400).json({ error: "Invalid authorization code" });
-    }
+        if (!authCode || authCode.client_id !== client_id) {
+            return res.status(400).json({ error: "Invalid authorization code" });
+        }
 
-    const token = jwt.sign(
-        { username: authCode.username },
-        process.env.JWT_SECRET,
-        { expiresIn: "1h" }
-    );
+        const token = jwt.sign(
+            { username: authCode.username },
+            process.env.JWT_SECRET,
+            { expiresIn: "1h" }
+        );
 
-    delete authCodes[code];
+        delete authCodes[code];
 
-    return res.json({
-        access_token: token,
-        token_type: "Bearer",
-        expires_in: 3600
-    });
+        return res.json({
+            access_token: token,
+            token_type: "Bearer",
+            expires_in: 3600
+        });
     });
 }
 export { show_form, login, get_token };
