@@ -6,7 +6,6 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const dbPath = path.resolve(__dirname, "database.sqlite");
 
-// Create or open the database
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error("Error connecting to SQLite database:", err.message);
@@ -15,7 +14,6 @@ const db = new sqlite3.Database(dbPath, (err) => {
   }
 });
 
-// Initialize the schema (create the user table if it doesn't exist)
 const init = () => {
   db.run(`
     CREATE TABLE IF NOT EXISTS user (
