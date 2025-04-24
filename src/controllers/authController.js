@@ -87,7 +87,9 @@ const get_token = async (req, res) => {
         }
 
         const token = jwt.sign(
-            { username: authCode.username },
+            { username: authCode.username ,
+                authors: "70357_70369"
+            },
             process.env.JWT_SECRET,
             { expiresIn: "1h" }
         );
