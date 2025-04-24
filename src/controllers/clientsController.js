@@ -1,21 +1,21 @@
 import { db } from "../config/dbconnect.js";
 
 const register = async (req, res) => {
-    const { clientID, clientSecret, name, redirectUri } = req.body;
-    if (!clientID || !clientSecret || !name || !redirectUri) {
-        return res.status(400).json({ error: "Missing id, secret, application name or redirectUri" });
+    const { client_id, client_secret, name, redirect_uri } = req.body;
+    if (!client_id || !client_secret || !name || !redirect_uri) {
+        return res.status(400).json({ error: "Missing id, secret, application name or redirect_uri" });
     }
     try {
         const sql =
-            `INSERT INTO client (id, secret, name, redirectUri) VALUES (?, ?, ?, ?)`;
-        db.run(sql, [clientID, clientSecret, name, redirectUri], function (err) {
+            `INSERT INTO client (id, secret, name, redirect_uri) VALUES (?, ?, ?, ?)`;
+        db.run(sql, [client_id, client_secret, name, redirect_uri], function (err) {
             if (err) {
                 console.error(err);
                 return res.status(400).json({ error: err.message });
             }
             return res.status(201).json({
-                clientID: clientID,
-                clientSecret: clientSecret,
+                client_id: client_id,
+                client_secret: client_secret,
             });
         });
     } catch (error) {
