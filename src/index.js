@@ -7,6 +7,7 @@ import clientRoutes from "./routes/register_client.js";
 import userRoutes from "./routes/register_user.js";
 
 init();
+const app = express();
 
 app.use(express.json());
 
