@@ -15,14 +15,14 @@ passport.deserializeUser((obj, done) => done(null, obj));
 
 const strategy = new OAuth2Strategy(
   {
-    authorizationURL: 'https://auth-server-ss2425.onrender.com/authorize',
-    tokenURL: 'https://auth-server-ss2425.onrender.com/token',
-    clientID: 'my-client2',
-    clientSecret: 'secret2',
+    authorizationURL: 'https://authorization-server-71911-71903.onrender.com/oauth/authorize',
+    tokenURL: 'https://authorization-server-71911-71903.onrender.com/oauth/token',
+    clientID: '57ebef80-22f7-41eb-9533-aedb14aec9b3',
+    clientSecret: 'e46da553-a31a-4e16-869e-113e3fd08450',
     callbackURL: 'http://localhost:3001/auth/provider/callback',
     state: true,
     customHeaders: {
-      Authorization: 'Basic ' + Buffer.from('my-client2:secret2').toString('base64'),
+      Authorization: 'Basic ' + Buffer.from('57ebef80-22f7-41eb-9533-aedb14aec9b3:e46da553-a31a-4e16-869e-113e3fd08450').toString('base64'),
     }
   },
   (accessToken, refreshToken, profile, cb) => {
