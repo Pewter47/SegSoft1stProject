@@ -15,14 +15,14 @@ passport.deserializeUser((obj, done) => done(null, obj));
 
 const strategy = new OAuth2Strategy(
   {
-    authorizationURL: 'https://segsoft-server.onrender.com/Oauth/authorize',
-    tokenURL: 'https://segsoft-server.onrender.com/Oauth/token',
+    authorizationURL: 'https://segsoft-25-production.up.railway.app/api/auth/authorize',
+    tokenURL: 'https://segsoft-25-production.up.railway.app/api/auth/token',
     clientID: '70357_70369',
-    clientSecret: 'secret',
+    clientSecret: 'client',
     callbackURL: 'http://localhost:3001/auth/provider/callback',
     state: true,
     customHeaders: {
-      Authorization: 'Basic ' + Buffer.from('70357_70369:secret').toString('base64'),
+      Authorization: 'Basic ' + Buffer.from('70357_70369:client').toString('base64'),
     }
   },
   (accessToken, refreshToken, profile, cb) => {
