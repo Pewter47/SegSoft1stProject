@@ -15,10 +15,10 @@ passport.deserializeUser((obj, done) => done(null, obj));
 
 const strategy = new OAuth2Strategy(
   {
-    authorizationURL: 'https://segsoft-25-production.up.railway.app/api/auth/authorize',
-    tokenURL: 'https://segsoft-25-production.up.railway.app/api/auth/token',
-    clientID: '70357_70369',
-    clientSecret: 'client',
+    authorizationURL: 'https://auth-server-ss2425.onrender.com/authorize',
+    tokenURL: 'https://auth-server-ss2425.onrender.com/api/token',
+    clientID: 'a',
+    clientSecret: 'a',
     callbackURL: 'http://localhost:3001/auth/provider/callback',
     state: true,
     customHeaders: {

@@ -7,7 +7,7 @@ const register = async (req, res) => {
     }
     try {
         const sql =
-            `INSERT INTO client (id, secret, name, redirect_uri) VALUES (?, ?, ?, ?)`;
+            `INSERT INTO client (id, secret, name, redirectUri) VALUES (?, ?, ?, ?)`;
         db.run(sql, [client_id, client_secret, name, redirect_uri], function (err) {
             if (err) {
                 console.error(err);
